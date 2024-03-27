@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+
+      //funcion para crear div y añadirlo a un contenedor
+      function crearDiv(elemento, contenedor){
+        for(let index = 1; index <= elemento; index++){
+          let div = "<div></div>";
+          $(contenedor).append(div);
+        }
+      };
+      function crearBoton(elemento, contenedor){
+        let boton = "<button></button>";
+        for(let index = 1; index <= elemento; index++){
+          $(contenedor).append(boton);
+        }
+      };
+      
+      const div = "<div></div>";
+      $("body").append(div); // añade el div al body
+      $("div").eq(0).attr("id", "calculadora"); //busca el primer div y le añade el id
+      crearDiv(2, "#calculadora");
+      $("#calculadora div").eq(0).attr("id", "pantalla");
+      $("#calculadora div").eq(1).attr("id", "botones");
+      crearDiv(1, "#pantalla");
+      $("#pantalla div").eq(0).attr("id", "pantallaNumero");
+      crearDiv(3,"#botones");
+      $("#botones div").eq(0).attr("id", "menu");
+
+      crearBoton(5, "#menu");
+      $("#menu button").eq(0).addClass("on rojo"); //para añadir mas de 2 clases
+      $(".on").text("ON");
+      $("#menu button").eq(1).addClass("ce rojo");
+      $(".ce").text("CE");
+      $("#menu button").eq(2).addClass("porcentaje azul");
+      $(".porcentaje").text("%");
+      $("#menu button").eq(3).addClass("division azul");
+      $(".division").text("/");
+      $("#menu button").eq(4).addClass("raiz azul");
+      $(".raiz").text("√");
+
+      $("#botones div").eq(1).attr("id", "numeros");
+      crearBoton(12, "#numeros");
+      $("#numeros button").eq(0).addClass("numero7 numero");
+      $(".numero7").text("7");
+      $("#numeros button").eq(1).addClass("numero8 numero");
+      $(".numero8").text("8");
+      $("#numeros button").eq(2).addClass("numero9 numero");
+      $(".numero9").text("9");
+      $("#numeros button").eq(3).addClass("numero4 numero");
+      $(".numero4").text("4");
+      $("#numeros button").eq(4).addClass("numero5 numero");
+      $(".numero5").text("5");
+      $("#numeros button").eq(5).addClass("numero6 numero");
+      $(".numero6").text("6");
+      $("#numeros button").eq(6).addClass("numero1 numero");
+      $(".numero1").text("1");
+      $("#numeros button").eq(7).addClass("numero2 numero");
+      $(".numero2").text("2");
+      $("#numeros button").eq(8).addClass("numero3 numero");
+      $(".numero3").text("3");
+      $("#numeros button").eq(9).addClass("numero0 numero");
+      $(".numero0").text("0");
+      $("#numeros button").eq(10).addClass("punto numero");
+      $(".punto").text(".");
+      $("#numeros button").eq(11).addClass("igual numero");
+      $(".igual").text("=");
+
+      $("#botones div").eq(2).attr("id", "operadores");
+      crearBoton(7,"#operadores");
+      $("#operadores button").eq(0).addClass("multiplicacion operador");
+      $(".multiplicacion").text("X");
+      $("#operadores button").eq(1).addClass("mc operador");
+      $(".mc").text("MC");
+      $("#operadores button").eq(2).addClass("menos operador");
+      $(".menos").text("-");
+      $("#operadores button").eq(3).addClass("mr operador");
+      $(".mr").text("MR");
+      $("#operadores button").eq(4).addClass("mas operador");
+      $(".mas").text("+");
+      $("#operadores button").eq(5).addClass("m- operador");
+      $(".m-").text("M-");
+      $("#operadores button").eq(6).addClass("m operador");
+      $(".m").text("M+");
+
+
+      //estilos
+      $("body").css({
+        "display": "flex",
+        "height": "100vh",
+        "width": "100vw",
+        "justifyContent": "center",
+        "alignItems": "center"
+      });
+      $("#calculadora").css({
+        "height": "calc(100% - 150px)",
+        "width": "calc(100% - 40vw)",
+        "backgroundColor": "lightgray",
+        "border": "1px solid",
+        "borderRadius": "10%",
+        "display": "flex",
+        "justifyContent": "center",
+        "flexWrap": "wrap",
+      });
+      $("#pantalla").css({
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "height": "25vh",
+        "width": "50vw",
+        "borderBottom": "1px solid black",
+        "borderRadius": "38px 38px 0px 0px",
+        "backgroundColor": "darkblue",
+        "flexBasis": "calc(100%)"
+      });
+      $("#pantallaNumero").css({
+        "height": "15vh",
+        "width": "50vw",
+        "backgroundColor": "white",
+        "borderRadius": "30px"
+      });
+      $("#botones").css({
+        "height": "fit-content",
+        "width": "100%",
+        "display": "flex",
+        "justifyContent": "space-evenly",
+        "flexWrap": "wrap",
+        "flexBasis": "calc(100%)",
+      });
+      $("button").css({
+        "height": "20px",
+        "width": "50px",
+        "borderRadius": "5px",
+        "cursor": "pointer",
+        "border": "1px solid",
+        "textAlign": "center",
+      });
+      $(".rojo").css({
+        "backgroundColor": "red",
+        "color": "white",
+        "border": "1px solid black"
+      });
+      $(".azul").css({
+        "backgroundColor": "blue",
+        "color": "white",
+        "border": "1px solid black"
+      });
+      $("#menu").css({
+        "display": "flex",
+        "justifyContent": "space-evenly",
+        "alignItems": "center",
+        "height": "20%",
+        "flexBasis": "calc(100%)",
+        "marginBottom": "4vh"
+      });
+      $("#numeros").css({
+        "height": "0%",
+        "display": "grid",
+        "placeItems": "center",
+        "gridTemplateColumns": "repeat(3, 0.2fr)",
+        "columnGap": "0px",
+        "rowGap": "0px",
+        "flexBasis": "calc(60%)",
+      });
+      $(".numero").css({
+        "height": "30px",
+        "width": "40px",
+        "textAlign": "center",
+        "fontWeight": "bold",
+        "margin": "25px 0px 0px 20px",
+      });
+      $("#operadores").css({
+        "height": "0%",
+        "display": "grid",
+        "placeItems": "center",
+        "gridTemplateColumns": "repeat(2, 1fr)",
+        "flexBasis": "calc(35%)",
+        "rowGap": "20px",
+        "marginTop": "25px"
+      });
+      $(".operador").css({
+        "height": "30px",
+        "width": "40px",
+        "backgroundColor": "blue",
+        "color": "white",
+        "border": "1px solid black"
+      });
+      $(".menos").css({
+        "marginTop": "5px"
+      });
+      $(".mr").css({
+        "marginTop": "5px"
+      });
+      $(".mas").css({
+        "height": "85px",
+        "width": "40px",
+        "marginTop": "5px"
+      });
+      $(".m-").css({
+        "marginTop": "-50px"
+      });
+      $(".m").css({
+        "gridColumn": "2",
+        "marginTop": "-70px"
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
